@@ -4,10 +4,10 @@ import re
 from glob import glob
 
 
-folder_path = r'E:\0402แยกไฟล์\3wire'
+folder_path = r'Y:\XXXXX'
 
 csv_files = glob(os.path.join(folder_path, '*.csv'))
-folder = r'E:\0402แยกไฟล์'
+folder = r'Z:\XXXXX'
 
 combined_data = []
 

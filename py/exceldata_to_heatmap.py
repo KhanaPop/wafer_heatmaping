@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 #import os
 
 # 1. ระบุ path ไปยังไฟล์ Excel ที่มีข้อมูล x, y, value
-excel_path = r'E:\data\CMI_TEST_241-0333.xlsx'
+excel_path = r'Y:\XXXX.xlsx'
 
 # 2. โหลดข้อมูลจาก Excel
 df = pd.read_excel(excel_path)
@@ -32,4 +32,3 @@ plt.xlabel("x")
 plt.ylabel("y")
 plt.tight_layout()
 plt.show()
-#plt.savefig(r'E:\test1\HEATER_heatmap.png')

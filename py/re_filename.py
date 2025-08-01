@@ -1,16 +1,16 @@
 import os
 import re
 
-folder_path = r"E:\0402แยกไฟล์\R-V-RTD"
+folder_path = r"Y:\XXXXX"
 
 # เริ่มพิกัด
 x = 0
-y = 18
+y = 0
 
 
 # ช่วงลำดับที่ต้องการเปลี่ยนชื่อ
-min_index = 619
-max_index = 620
+min_index = 1
+max_index = 10
 
 # regex หาลำดับในวงเล็บ 
 pattern = re.compile(r'\((\d+)\)')

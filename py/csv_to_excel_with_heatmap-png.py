@@ -17,7 +17,7 @@ def extract_xy_from_filename(filename):
     return None, None
 
 
-folder_path = 'E:\HEATER_C09_ENIG'
+folder_path = 'X:\XXX'
 csv_files = glob(os.path.join(folder_path, '*.csv'))
 
 combined_data = []
@@ -61,7 +61,7 @@ df_combined['abs_x'] = df_combined['x'].abs() #convert x y value to abs
 df_combined['abs_y'] = df_combined['y'].abs()
 
 folder_name = os.path.basename(folder_path)
-output_excel = os.path.join(r'E:\test3', f"{folder_name}.xlsx")
+output_excel = os.path.join(r'Z:\XXXXX', f"{folder_name}.xlsx")
 df_combined.to_excel(output_excel, index=False) #convert dataframe to excel
 print(f'success: {output_excel}')
 #print("data:", combined_data[:3]) 

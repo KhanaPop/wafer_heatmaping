@@ -15,7 +15,7 @@ def extract_xy_from_filename(filename):
     return None, None
 
 
-folder_path = 'E:\TEG_TEST\241-0333(1)'
+folder_path = 'X:\XX'
 csv_files = glob(os.path.join(folder_path, '*.csv'))
 
 combined_data = []
@@ -63,7 +63,7 @@ for file in csv_files:
 df_combined = pd.DataFrame(combined_data).sort_values(by=['y', 'x'])
 
 folder_name = os.path.basename(folder_path)
-output_excel = os.path.join(r'E:\test1', f"{folder_name}.xlsx")
+output_excel = os.path.join(r'X:\XXXX', f"{folder_name}.xlsx")
 #df_combined.to_excel(output_excel, index=False)
 print(f'success: {output_excel}')
 #print("data:", combined_data[:3]) 

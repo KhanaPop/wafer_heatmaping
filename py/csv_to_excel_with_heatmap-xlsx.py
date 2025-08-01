@@ -18,9 +18,9 @@ def extract_xy_from_filename(filename):
     return None, None
 
 
-folder_path = r'E:\PI25TTC9B-H8\PI25TTC9B-H8-HEATER' #source_folder
+folder_path = r'Y:\XXXX/XXXX' #source_folder
 csv_files = glob(os.path.join(folder_path, '*.csv'))
-destination_folder = r'E:\Final-data\PI25TTC9B-H8' #destination_folder
+destination_folder = r'Z:\XXXXXX' #destination_folder
 
 combined_data = []
 

@@ -20,7 +20,7 @@ def extract_xy_from_filename(filename):
     return None, None
 
 
-folder_path = 'E:\TTVmodular2x2\CMI_TEST_241-0330' #folder ต้นทาง
+folder_path = 'Y:\XXXXX' #folder ต้นทาง
 csv_files = glob(os.path.join(folder_path, '*.csv'))
 
 combined_data = []
@@ -64,7 +64,7 @@ df_combined['abs_x'] = df_combined['x'].abs() #convert x y value to abs
 df_combined['abs_y'] = df_combined['y'].abs()
 
 folder_name = os.path.basename(folder_path)
-output_excel = os.path.join(r'E:\data', f"{folder_name}.xlsx")
+output_excel = os.path.join(r'Z:\XXXXX', f"{folder_name}.xlsx")
 df_combined.to_excel(output_excel, index=False) #convert dataframe to excel output file
 print(f'success: {output_excel}')
 #print("data:", combined_data[:3]) 
@@ -105,7 +105,7 @@ for i, abs_y in enumerate(pivot.index, start=2):
             ws.cell(row=i, column=j).fill = fill
             
 # Save ไฟล์
-wb.save(rf"E:\data\{folder_name}_heatmap.xlsx")
+wb.save(rf"Z:\data\{folder_name}_heatmap.xlsx")
 print(" heatmap to Excel ")
 
 plt.figure(figsize=(10, 8))

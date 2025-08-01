@@ -1,0 +1,67 @@
+Sub Heatmap_FromBINsheet()
+    Dim rng As Range
+    Dim wsBIN As Worksheet
+    Dim startRow As Long
+    Dim currentRow As Long
+    Dim thresholds() As Variant
+    Dim colors() As Variant
+    Dim i As Long, validCount As Long
+    Dim fc As FormatCondition
+
+    ' Set worksheet and starting row
+    Set wsBIN = ThisWorkbook.Sheets("BIN")
+    startRow = 2
+    currentRow = startRow
+
+    ' Count valid rows (skip rows with no color or min/max missing)
+    Do While Not IsEmpty(wsBIN.Cells(currentRow, 2)) And Not IsEmpty(wsBIN.Cells(currentRow, 3))
+        If wsBIN.Cells(currentRow, 1).Interior.Color <> 0 Then
+            validCount = validCount + 1
+        End If
+        currentRow = currentRow + 1
+    Loop
+
+    If validCount = 0 Then
+        MsgBox "No valid threshold rows with color found in sheet 'BIN'.", vbExclamation
+        Exit Sub
+    End If
+
+    ' Resize arrays
+    ReDim thresholds(1 To validCount, 1 To 2)
+    ReDim colors(1 To validCount)
+
+    ' Read values
+    currentRow = startRow
+    i = 1
+    Do While Not IsEmpty(wsBIN.Cells(currentRow, 2)) And Not IsEmpty(wsBIN.Cells(currentRow, 3))
+        If wsBIN.Cells(currentRow, 1).Interior.Color <> 0 Then
+            thresholds(i, 1) = wsBIN.Cells(currentRow, 2).Value ' Min
+            thresholds(i, 2) = wsBIN.Cells(currentRow, 3).Value ' Max
+            colors(i) = wsBIN.Cells(currentRow, 1).Interior.Color
+            i = i + 1
+        End If
+        currentRow = currentRow + 1
+    Loop
+
+    ' Ask user for range
+    On Error Resume Next
+    Set rng = Application.InputBox("Select the range to apply the heatmap", Type:=8)
+    On Error GoTo 0
+    If rng Is Nothing Then Exit Sub
+
+    ' Clear existing formatting
+    rng.FormatConditions.Delete
+
+    ' Apply formatting
+    For i = 1 To validCount
+        On Error Resume Next
+        Set fc = rng.FormatConditions.Add(Type:=xlCellValue, _
+            Operator:=xlBetween, _
+            Formula1:=thresholds(i, 1), _
+            Formula2:=thresholds(i, 2))
+        fc.Interior.Color = colors(i)
+        On Error GoTo 0
+    Next i
+
+    MsgBox "Heatmap applied using " & validCount & " valid rows from 'BIN'.", vbInformation
+End Sub
